@@ -21,6 +21,7 @@ else
 fi
 
 # Set the path to the GNU Arm Embedded Toolchain
+export PATH_TO_ARM_TOOLCHAIN="/usr/local/google/home/rocky/tflite-micro/tensorflow/lite/micro/tools/make/downloads/gcc_embedded"
 if [ -z ${PATH_TO_ARM_TOOLCHAIN+x} ]; then
   export PATH_TO_ARM_TOOLCHAIN="/usr/local/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi"
 fi
@@ -149,5 +150,7 @@ cmake -GNinja \
       -DCUSTOM_ARM_LINKER_FLAGS="${CUSTOM_ARM_LINKER_FLAGS}" \
       -DLINKER_SCRIPT="${PATH_TO_LINKER_SCRIPT}" \
       -DUSE_UART2=ON \
+      -DCMAKE_OBJCOPY:FILEPATH=${PATH_TO_ARM_TOOLCHAIN}/bin/arm-none-eabi-objcopy \
+      -DCMAKE_OBJDUMP:FILEPATH=${PATH_TO_ARM_TOOLCHAIN}/bin/arm-none-eabi-objdump \
       -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
       ..
