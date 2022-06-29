@@ -17,17 +17,17 @@ if(IREE_HAL_EXECUTABLE_LOADER_VMVX_MODULE)
       device_vmvx_sync.c
   )
 
-  set(_TRANSLATE_ARGS)
-  list(APPEND _TRANSLATE_ARGS "--iree-input-type=mhlo")
-  list(APPEND _TRANSLATE_ARGS "--iree-mlir-to-vm-bytecode-module")
-  list(APPEND _TRANSLATE_ARGS "--iree-hal-target-backends=vmvx")
-  list(APPEND _TRANSLATE_ARGS "${CMAKE_CURRENT_SOURCE_DIR}/model_fix_name.mlir")
-  list(APPEND _TRANSLATE_ARGS "-o")
-  list(APPEND _TRANSLATE_ARGS "model_fix_name_bytecode_module_vmvx.vmfb")
+  set(_COMPILE_ARGS)
+  list(APPEND _COMPILE_ARGS "--iree-input-type=mhlo")
+  list(APPEND _COMPILE_ARGS "--iree-mlir-to-vm-bytecode-module")
+  list(APPEND _COMPILE_ARGS "--iree-hal-target-backends=vmvx")
+  list(APPEND _COMPILE_ARGS "${CMAKE_CURRENT_SOURCE_DIR}/model_fix_name.mlir")
+  list(APPEND _COMPILE_ARGS "-o")
+  list(APPEND _COMPILE_ARGS "model_fix_name_bytecode_module_vmvx.vmfb")
 
   add_custom_command(
     OUTPUT "model_fix_name_bytecode_module_vmvx.vmfb"
-    COMMAND ${_TRANSLATE_TOOL_EXECUTABLE} ${_TRANSLATE_ARGS}
+    COMMAND ${_COMPILE_TOOL_EXECUTABLE} ${_COMPILE_ARGS}
   )
 
   set(_GEN_EMBED_ARGS)
@@ -85,17 +85,17 @@ if(IREE_HAL_EXECUTABLE_LOADER_VMVX_MODULE)
       device_int_vmvx_sync.c
   )
 
-  set(_TRANSLATE_ARGS)
-  list(APPEND _TRANSLATE_ARGS "--iree-input-type=tosa")
-  list(APPEND _TRANSLATE_ARGS "--iree-mlir-to-vm-bytecode-module")
-  list(APPEND _TRANSLATE_ARGS "--iree-hal-target-backends=vmvx")
-  list(APPEND _TRANSLATE_ARGS "${CMAKE_CURRENT_SOURCE_DIR}/model_tosa_fix_name.mlir")
-  list(APPEND _TRANSLATE_ARGS "-o")
-  list(APPEND _TRANSLATE_ARGS "model_tosa_fix_name_bytecode_module_vmvx.vmfb")
+  set(_COMPILE_ARGS)
+  list(APPEND _COMPILE_ARGS "--iree-input-type=tosa")
+  list(APPEND _COMPILE_ARGS "--iree-mlir-to-vm-bytecode-module")
+  list(APPEND _COMPILE_ARGS "--iree-hal-target-backends=vmvx")
+  list(APPEND _COMPILE_ARGS "${CMAKE_CURRENT_SOURCE_DIR}/model_tosa_fix_name.mlir")
+  list(APPEND _COMPILE_ARGS "-o")
+  list(APPEND _COMPILE_ARGS "model_tosa_fix_name_bytecode_module_vmvx.vmfb")
 
   add_custom_command(
     OUTPUT "model_tosa_fix_name_bytecode_module_vmvx.vmfb"
-    COMMAND ${_TRANSLATE_TOOL_EXECUTABLE} ${_TRANSLATE_ARGS}
+    COMMAND ${_COMPILE_TOOL_EXECUTABLE} ${_COMPILE_ARGS}
   )
 
   set(_GEN_EMBED_ARGS)

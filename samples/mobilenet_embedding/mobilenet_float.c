@@ -66,7 +66,6 @@ iree_status_t Run() {
   // Note that we use the synchronous variant which operates on pure type/shape
   // erased buffers.
   const char kMainFunctionName[] = "module.predict";
-//  const char kMainFunctionName[] = "module.simple_mul";
   iree_vm_function_t main_function;
   IREE_RETURN_IF_ERROR(iree_vm_context_resolve_function(
       context, iree_make_cstring_view(kMainFunctionName), &main_function));
@@ -83,8 +82,7 @@ iree_status_t Run() {
       IREE_HAL_ELEMENT_TYPE_FLOAT_32, IREE_HAL_ENCODING_TYPE_DENSE_ROW_MAJOR,
       (iree_hal_buffer_params_t){
           .type = IREE_HAL_MEMORY_TYPE_DEVICE_LOCAL,
-          .usage =
-              IREE_HAL_BUFFER_USAGE_DISPATCH | IREE_HAL_BUFFER_USAGE_TRANSFER,
+          .usage = IREE_HAL_BUFFER_USAGE_DEFAULT,
       },
       iree_make_const_byte_span(kFloat4, sizeof(kFloat4)), &arg0_buffer_view));
 
